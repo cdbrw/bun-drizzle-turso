@@ -16,6 +16,7 @@
     "elysia": "latest"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "latest",
     "bun-types": "latest",
     "drizzle-kit": "^0.20.14"
   },

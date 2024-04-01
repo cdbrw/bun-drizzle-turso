@@ -1,6 +1,0 @@
-[phases.setup]
-# bun 1.0.36
-nixpkgsArchive = '33f2f671bb4fcd406eb579dcb451b9003b41cdc2'
-
-[start]
-cmd = "bun run db:migrate && bun run start"
