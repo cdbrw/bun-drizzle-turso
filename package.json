@@ -2,14 +2,22 @@
   "name": "turso",
   "version": "1.0.50",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "db:run": "turso dev --db-file drizzle-turso-db.db",
+    "db:generate": "drizzle-kit generate:sqlite",
+    "db:migrate": "bun run src/db/migrate.ts",
+    "studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@elysiajs/swagger": "^1.0.3",
+    "@libsql/client": "^0.6.0",
+    "drizzle-orm": "^0.30.6",
     "elysia": "latest"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "drizzle-kit": "^0.20.14"
   },
   "module": "src/index.js"
 }
