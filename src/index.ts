@@ -4,41 +4,24 @@ import { deleteUser, getUserWithPosts, insertUser } from './functions/users';
 import { insertPost, updatePost } from './functions/posts';
 
 const users = new Elysia({ prefix: '/user' })
-  .get(
-    '/:id/posts',
-    ({ params: { id } }) => {
-      return getUserWithPosts(id);
-    },
-    {
-      params: t.Object({ id: t.Numeric() }),
-    }
-  )
-  .post(
-    '/',
-    ({ body: { name, email } }) => {
-      return insertUser({ name, email });
-    },
-    {
-      body: t.Object({
-        name: t.String(),
-        email: t.String(),
-      }),
-    }
-  )
-  .delete(
-    '/',
-    ({ body: { id } }) => {
-      return deleteUser(id);
-    },
-    { body: t.Object({ id: t.Numeric() }) }
-  );
+  .get('/:id/posts', ({ params: { id } }) => getUserWithPosts(id), {
+    params: t.Object({ id: t.Numeric() }),
+  })
+  .post('/', ({ body: { name, email } }) => insertUser({ name, email }), {
+    body: t.Object({
+      name: t.String(),
+      email: t.String(),
+    }),
+  })
+  .delete('/', ({ body: { id } }) => deleteUser(id), {
+    body: t.Object({ id: t.Numeric() }),
+  });
 
 const posts = new Elysia({ prefix: '/post' })
   .post(
     '/',
-    ({ body: { title, content, userId } }) => {
-      return insertPost({ title, content, userId });
-    },
+    ({ body: { title, content, userId } }) =>
+      insertPost({ title, content, userId }),
     {
       body: t.Object({
         title: t.String(),
@@ -49,9 +32,8 @@ const posts = new Elysia({ prefix: '/post' })
   )
   .patch(
     '/:id',
-    ({ params: { id }, body: { title, content } }) => {
-      return updatePost(id, { title, content });
-    },
+    ({ params: { id }, body: { title, content } }) =>
+      updatePost(id, { title, content }),
     {
       params: t.Object({ id: t.Numeric() }),
       body: t.Object({ title: t.String(), content: t.String() }),

@@ -1,5 +1,5 @@
 {
-  "name": "turso",
+  "name": "bun-drizzle-turso",
   "version": "1.0.50",
   "scripts": {
     "dev": "bun run --watch src/index.ts",
@@ -12,7 +12,7 @@
   "dependencies": {
     "@elysiajs/swagger": "^1.0.3",
     "@libsql/client": "^0.6.0",
-    "drizzle-orm": "^0.30.6",
+    "drizzle-orm": "^0.30.7",
     "elysia": "latest"
   },
   "devDependencies": {
